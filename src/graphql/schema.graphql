@@ -1,0 +1,26 @@
+type Query {
+    authors: [Author!]!
+    books: [Book!]!
+}
+
+type Mutation {
+    createAuthor(name: String!): Author!
+    updateAuthor(id: ID!, name: String!): Author!
+    createBook(title: String!, desc: String, year: Int! authorId: ID!): Boolean!
+}
+
+# Schema Types
+type Author {
+    id: ID!
+    name: String!
+    books: [Book!]!
+}
+
+type Book {
+    id: ID!
+    title: String!
+    desc: String
+    year: Int!
+    author: Author!
+    createdOn: String!
+}

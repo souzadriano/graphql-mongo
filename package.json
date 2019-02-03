@@ -1,0 +1,51 @@
+{
+  "name": "graphql-mongo",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "babel-node src",
+    "watch": "nodemon src --exec babel-node",
+    "watch:local": "NODE_ENV=local yarn watch",
+    "dev": "NODE_ENV=local nodemon --exec babel-node src/index.js",
+    "prettier": "prettier --config .prettierrc --write \"src/**/*.js\"",
+    "test": "NODE_ENV=test node node_modules/mocha/bin/_mocha --require @babel/register  \"test/modules/**/*.js\"",
+    "coverage": "NODE_ENV=test node_modules/nyc/bin/nyc.js --reporter=html --reporter=text yarn test",
+    "publish:docker": "docker build -t jexperts/channel-iam-service:0.0.2 . && docker push jexperts/channel-iam-service:0.0.2",
+    "build": "NODE_ENV=PRODUCTION babel src -d dist --copy-files",
+    "serve": "NODE_ENV=production node dist/index.js"
+  },
+  "dependencies": {
+    "express-jwt": "^5.3.1",
+    "graphql-yoga": "^1.17.1",
+    "mongoose": "^5.4.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.0.0-0",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.3.1",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-istanbul": "^5.1.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-mocha": "^5.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "mocha": "^5.2.0",
+    "mock-require": "^3.0.3",
+    "nodemon": "^1.18.9",
+    "nyc": "^13.1.0",
+    "prettier": "^1.15.3",
+    "prettier-eslint": "^8.8.2",
+    "prettierrc": "^0.0.0-5",
+    "sinon": "^7.2.3"
+  }
+}
