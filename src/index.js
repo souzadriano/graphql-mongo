@@ -1,7 +1,9 @@
 import { GraphQLServer } from 'graphql-yoga';
+import { importSchema } from 'graphql-import';
+import { makeExecutableSchema } from 'graphql-tools';
 // import { startDB, models } from './db';
 import resolvers from './graphql/resolvers';
-import jwt from 'express-jwt'
+import jwt from 'express-jwt';
 
 // const db = startDB({ 
 //   user: 'graphql', 
@@ -15,14 +17,15 @@ import jwt from 'express-jwt'
 //   db,
 // };
 
+const typeDefs = importSchema(`${__dirname}/graphql/schema.graphql`)
+const schema = makeExecutableSchema({ typeDefs, resolvers })
+
 const context = async ({ request }) => {
     return { user: request.user }
 }
 
-
 const server = new GraphQLServer({
-  typeDefs: `${__dirname}/graphql/schema.graphql`,
-  resolvers,
+  schema: schema,
   context: context
 });
 
